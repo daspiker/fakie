@@ -20,6 +20,7 @@ def script1():
 
 @app.route('/input', methods=['GET', 'POST'])
 def input():
+    files = os.listdir(app.config['UPLOAD_FOLDER'])
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -35,7 +36,7 @@ def input():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             print("saved file successfully")
-    return render_template('input.html')
+    return render_template('input.html', files=files)
 
 @app.route('/output')
 def output():

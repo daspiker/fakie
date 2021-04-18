@@ -8,4 +8,10 @@
       <p><input type=file name=file>
          <input type=submit value=Upload>
     </form>
+    <h1>Files</h1>
+    <ul>
+    {%- for file in files %}
+        <li>{{ file }}
+    {%- endfor %}
+    </ul>
 {% endblock %}
