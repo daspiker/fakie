@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!doctype html>
+    <title>Job</title>
+    <h1>Files</h1>
+    <ul>
+    {%- for file in files %}
+        <li>{{ file }}
+    {%- endfor %}
+    </ul>
+    <h1>Syslog Collector Settings</h1>
+    <form action="" method=post novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.serverIP.label }}<br>
+            {{ form.serverIP }}
+        </p>
+        <p>
+            {{ form.logFileName.label }}<br>
+            {{ form.logFileName(size=64) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    
+{% endblock %}

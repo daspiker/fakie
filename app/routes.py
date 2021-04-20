@@ -3,9 +3,7 @@ from app import app
 from werkzeug.utils import secure_filename
 import os
 import subprocess
-
-UPLOAD_FOLDER = 'uploads/'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+from app.forms import jobForm
 
 @app.route('/')
 @app.route('/index')
@@ -18,8 +16,23 @@ def script1():
     print(subprocess.check_output(["echo", "Fakie Rules!!!"]))
     return render_template('index.html', title='Home')
 
-@app.route('/input', methods=['GET', 'POST'])
-def input():
+@app.route('/job', methods=['GET', 'POST'])
+def job():
+    files = os.listdir(app.config['UPLOAD_FOLDER'])
+    form = jobForm()
+    if form.validate_on_submit():
+        serverIP = str(form.serverIP.data)
+        logFileName = str(form.logFileName.data)
+        return render_template('job.html', serverIP=serverIP, logFileName=logFileName, files=files, form=form)
+    elif request.method == 'GET':
+        serverIP = request.args.get('serverIP', type=str)
+        form.serverIP.data = serverIP
+        logFileName = request.args.get('logFileName', type=str)
+        form.logFileName.data = logFileName
+    return render_template('job.html', files=files, form=form)
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
     if request.method == 'POST':
         # check if the post request has the file part
@@ -36,11 +49,8 @@ def input():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             print("saved file successfully")
-    return render_template('input.html', files=files)
-
-@app.route('/output')
-def output():
-    return render_template('output.html')
+            files = os.listdir(app.config['UPLOAD_FOLDER'])  
+    return render_template('upload.html', files=files)
 
 @app.route('/settings')
 def settings():
