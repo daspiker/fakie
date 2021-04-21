@@ -22,7 +22,8 @@ def job():
     form = jobForm()
     if form.validate_on_submit():
         serverIP = str(form.serverIP.data)
-        logFileName = str(form.logFileName.data)
+        logFileName = app.config['UPLOAD_FOLDER'] + str(form.logFileName.data)
+        subprocess.run(["logger -p auth.info -n " + serverIP + " -t CEF -f " + logFileName], shell=True)
         return render_template('job.html', serverIP=serverIP, logFileName=logFileName, files=files, form=form)
     elif request.method == 'GET':
         serverIP = request.args.get('serverIP', type=str)
