@@ -49,15 +49,10 @@ def api():
         apiLogFileName = app.config['UPLOAD_FOLDER'] + str(api_form.apiLogFileName.data)
         sentinel = AzureSentinelConnector(workspaceId, workspaceKey, tableName, queue_size=10000, bulks_number=10)
         with open(apiLogFileName, "r") as read_file:
-            payload = {}
             data = json.load(read_file)
-            print(data)
             for entry in data:
-                for key, value in entry.items():
-                    payload.update({key:value})
                 with sentinel:
-                    sentinel.send(payload)
-        
+                    sentinel.send(entry)
     return render_template('job.html', files=files, syslog_form=syslog_form, api_form=api_form)
 
 @app.route('/upload', methods=['GET', 'POST'])
