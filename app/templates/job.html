@@ -10,17 +10,39 @@
     {%- endfor %}
     </ul>
     <h1>Syslog Collector Settings</h1>
-    <form action="" method=post novalidate>
-        {{ form.hidden_tag() }}
+    <form action="{{ url_for('syslog') }}" method=post novalidate>
+        {{ syslog_form.hidden_tag() }}
         <p>
-            {{ form.serverIP.label }}<br>
-            {{ form.serverIP }}
+            {{ syslog_form.serverIP.label }}<br>
+            {{ syslog_form.serverIP }}
         </p>
         <p>
-            {{ form.logFileName.label }}<br>
-            {{ form.logFileName(size=64) }}
+            {{ syslog_form.syslogLogFileName.label }}<br>
+            {{ syslog_form.syslogLogFileName(size=64) }}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ syslog_form.submit() }}</p>
+    </form>
+
+    <h1>API Settings</h1>
+    <form action="{{ url_for('api') }}" method=post novalidate>
+        {{ api_form.hidden_tag() }}
+        <p>
+            {{ api_form.workspaceId.label }}<br>
+            {{ api_form.workspaceId }}
+        </p>
+        <p>
+            {{ api_form.workspaceKey.label }}<br>
+            {{ api_form.workspaceKey }}
+        </p>
+        <p>
+            {{ api_form.tableName.label }}<br>
+            {{ api_form.tableName }}
+        </p>
+        <p>
+            {{ api_form.apiLogFileName.label }}<br>
+            {{ api_form.apiLogFileName(size=64) }}
+        </p>
+        <p>{{ api_form.submit() }}</p>
     </form>
     
 {% endblock %}

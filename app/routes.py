@@ -3,7 +3,9 @@ from app import app
 from werkzeug.utils import secure_filename
 import os
 import subprocess
-from app.forms import jobForm
+import json
+from app.forms import syslogForm, apiForm
+from app.sentinel import AzureSentinelConnector
 
 @app.route('/')
 @app.route('/index')
@@ -16,21 +18,47 @@ def script1():
     print(subprocess.check_output(["echo", "Fakie Rules!!!"]))
     return render_template('index.html', title='Home')
 
-@app.route('/job', methods=['GET', 'POST'])
+@app.route('/job', methods=['GET'])
 def job():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
-    form = jobForm()
-    if form.validate_on_submit():
-        serverIP = str(form.serverIP.data)
-        logFileName = app.config['UPLOAD_FOLDER'] + str(form.logFileName.data)
-        subprocess.run(["logger -p auth.info -n " + serverIP + " -t CEF -f " + logFileName], shell=True)
-        return render_template('job.html', serverIP=serverIP, logFileName=logFileName, files=files, form=form)
-    elif request.method == 'GET':
-        serverIP = request.args.get('serverIP', type=str)
-        form.serverIP.data = serverIP
-        logFileName = request.args.get('logFileName', type=str)
-        form.logFileName.data = logFileName
-    return render_template('job.html', files=files, form=form)
+    syslog_form = syslogForm()
+    api_form = apiForm()
+    return render_template('job.html', files=files, syslog_form=syslog_form, api_form=api_form)
+
+@app.route('/syslog', methods=['POST'])
+def syslog():
+    files = os.listdir(app.config['UPLOAD_FOLDER'])
+    syslog_form = syslogForm()
+    api_form = apiForm()
+    if syslog_form.validate_on_submit():
+        serverIP = str(syslog_form.serverIP.data)
+        syslogLogFileName = app.config['UPLOAD_FOLDER'] + str(syslog_form.syslogLogFileName.data)
+        subprocess.run(["logger -p auth.info -n " + serverIP + " -t CEF -f " + syslogLogFileName], shell=True)
+        print("syslog data collected: " + serverIP + " " + syslogLogFileName)
+    return render_template('job.html', files=files, syslog_form=syslog_form, api_form=api_form)
+
+@app.route('/api', methods=['POST'])
+def api():
+    files = os.listdir(app.config['UPLOAD_FOLDER'])
+    syslog_form = syslogForm()
+    api_form = apiForm()
+    if api_form.validate_on_submit():
+        workspaceId = str(api_form.workspaceId.data)
+        workspaceKey = str(api_form.workspaceKey.data)
+        tableName = str(api_form.tableName.data)
+        apiLogFileName = app.config['UPLOAD_FOLDER'] + str(api_form.apiLogFileName.data)
+        sentinel = AzureSentinelConnector(workspaceId, workspaceKey, tableName, queue_size=10000, bulks_number=10)
+        with open(apiLogFileName, "r") as read_file:
+            payload = {}
+            data = json.load(read_file)
+            print(data)
+            for entry in data:
+                for key, value in entry.items():
+                    payload.update({key:value})
+                with sentinel:
+                    sentinel.send(payload)
+        
+    return render_template('job.html', files=files, syslog_form=syslog_form, api_form=api_form)
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
