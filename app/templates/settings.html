@@ -1,5 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Settings</h1>
+    <!doctype html>
+    <title>Settings</title>
+    <h1>Syslog Collector Settings</h1>
+    <form action="{{ url_for('syslogSettings') }}" method=post novalidate>
+        {{ syslogSettings_form.hidden_tag() }}
+        <p>
+            {{ syslogSettings_form.serverIP.label }}<br>
+            {{ syslogSettings_form.serverIP(size=64) }}
+            {% for error in syslogSettings_form.serverIP.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ syslogSettings_form.submit() }}</p>
+    </form>
+
+    <h1>API Settings</h1>
+    <form action="{{ url_for('apiSettings') }}" method=post novalidate>
+        {{ apiSettings_form.hidden_tag() }}
+        <p>
+            {{ apiSettings_form.workspaceId.label }}<br>
+            {{ apiSettings_form.workspaceId(size=64) }}
+            {% for error in apiSettings_form.workspaceId.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ apiSettings_form.workspaceKey.label }}<br>
+            {{ apiSettings_form.workspaceKey(size=128) }}
+            {% for error in apiSettings_form.workspaceKey.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ apiSettings_form.submit() }}</p>
+    </form>
+    
 {% endblock %}

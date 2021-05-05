@@ -4,8 +4,10 @@ from werkzeug.utils import secure_filename
 import os
 import subprocess
 import json
-from app.forms import syslogForm, apiForm
+from app.forms import syslogForm, apiForm, syslogSettingsForm, apiSettingsForm
 from app.sentinel import AzureSentinelConnector
+from app import db
+from app.models import SyslogSettings, ApiSettings
 
 @app.route('/')
 @app.route('/index')
@@ -21,8 +23,18 @@ def script1():
 @app.route('/job', methods=['GET'])
 def job():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
+    
     syslog_form = syslogForm()
     api_form = apiForm()
+
+    syslogSettings = SyslogSettings.query.get(1)
+    if syslogSettings:
+        syslog_form.serverIP.data = syslogSettings.serverIP
+    apiSettings = ApiSettings.query.get(1)
+    if apiSettings:
+        api_form.workspaceId.data = apiSettings.workspaceId
+        api_form.workspaceKey.data = apiSettings.workspaceKey
+    
     return render_template('job.html', files=files, syslog_form=syslog_form, api_form=api_form)
 
 @app.route('/syslog', methods=['POST'])
@@ -76,6 +88,41 @@ def upload():
             files = os.listdir(app.config['UPLOAD_FOLDER'])  
     return render_template('upload.html', files=files)
 
-@app.route('/settings')
+@app.route('/settings', methods=['GET'])
 def settings():
-    return render_template('settings.html')
+    syslogSettings_form = syslogSettingsForm()
+    apiSettings_form = apiSettingsForm()
+    syslogSettings = SyslogSettings.query.get(1)
+    if syslogSettings: 
+        syslogSettings_form.serverIP.data = syslogSettings.serverIP
+    apiSettings = ApiSettings.query.get(1)
+    if apiSettings:
+        apiSettings_form.workspaceId.data = apiSettings.workspaceId
+        apiSettings_form.workspaceKey.data = apiSettings.workspaceKey
+    return render_template('settings.html', syslogSettings_form=syslogSettings_form, apiSettings_form=apiSettings_form)
+
+@app.route('/syslogSettings', methods=['POST'])
+def syslogSettings():
+    syslogSettings_form = syslogSettingsForm()
+    apiSettings_form = apiSettingsForm()
+    if syslogSettings_form.validate_on_submit():
+        syslogsettings = SyslogSettings(serverIP=syslogSettings_form.serverIP.data)
+        db.session.query(SyslogSettings).delete()
+        db.session.add(syslogsettings)
+        db.session.commit()
+        flash('Syslog Settings Successfully Saved')
+    return render_template('settings.html',syslogSettings_form=syslogSettings_form, apiSettings_form=apiSettings_form)
+
+@app.route('/apiSettings', methods=['POST'])
+def apiSettings():
+    syslogSettings_form = syslogSettingsForm()
+    apiSettings_form = apiSettingsForm()
+    if apiSettings_form.validate_on_submit():
+        workspaceId = str(apiSettings_form.workspaceId.data)
+        workspaceKey = str(apiSettings_form.workspaceKey.data)
+        apisettings = ApiSettings(workspaceId=syslogSettings_form.workspaceId.data, workspaceKey=syslogSettings_form.workspaceKey.data)
+        db.session.query(ApiSettings).delete()
+        db.session.add(apisettings)
+        db.session.commit()
+        flash('API Settings Successfully Saved')
+    return render_template('settings.html', syslogSettings_form=syslogSettings_form, apiSettings_form=apiSettings_form)

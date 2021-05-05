@@ -14,11 +14,17 @@
         {{ syslog_form.hidden_tag() }}
         <p>
             {{ syslog_form.serverIP.label }}<br>
-            {{ syslog_form.serverIP }}
+            {{ syslog_form.serverIP(size=64) }}
+            {% for error in syslog_form.serverIP.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ syslog_form.syslogLogFileName.label }}<br>
             {{ syslog_form.syslogLogFileName(size=64) }}
+            {% for error in syslog_form.syslogLogFileName.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>{{ syslog_form.submit() }}</p>
     </form>
@@ -28,19 +34,31 @@
         {{ api_form.hidden_tag() }}
         <p>
             {{ api_form.workspaceId.label }}<br>
-            {{ api_form.workspaceId }}
+            {{ api_form.workspaceId(size=64) }}
+            {% for error in api_form.workspaceId.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ api_form.workspaceKey.label }}<br>
-            {{ api_form.workspaceKey }}
+            {{ api_form.workspaceKey(size=128) }}
+            {% for error in api_form.workspaceKey.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ api_form.tableName.label }}<br>
-            {{ api_form.tableName }}
+            {{ api_form.tableName(size=64) }}
+            {% for error in api_form.tableName.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ api_form.apiLogFileName.label }}<br>
             {{ api_form.apiLogFileName(size=64) }}
+            {% for error in api_form.apiLogFileName.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>{{ api_form.submit() }}</p>
     </form>
