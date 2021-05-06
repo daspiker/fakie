@@ -27,10 +27,10 @@ def job():
     syslog_form = syslogForm()
     api_form = apiForm()
 
-    syslogSettings = SyslogSettings.query.get(1)
+    syslogSettings = SyslogSettings.query.first()
     if syslogSettings:
         syslog_form.serverIP.data = syslogSettings.serverIP
-    apiSettings = ApiSettings.query.get(1)
+    apiSettings = ApiSettings.query.first()
     if apiSettings:
         api_form.workspaceId.data = apiSettings.workspaceId
         api_form.workspaceKey.data = apiSettings.workspaceKey
@@ -92,10 +92,10 @@ def upload():
 def settings():
     syslogSettings_form = syslogSettingsForm()
     apiSettings_form = apiSettingsForm()
-    syslogSettings = SyslogSettings.query.get(1)
+    syslogSettings = SyslogSettings.query.first()
     if syslogSettings: 
         syslogSettings_form.serverIP.data = syslogSettings.serverIP
-    apiSettings = ApiSettings.query.get(1)
+    apiSettings = ApiSettings.query.first()
     if apiSettings:
         apiSettings_form.workspaceId.data = apiSettings.workspaceId
         apiSettings_form.workspaceKey.data = apiSettings.workspaceKey
