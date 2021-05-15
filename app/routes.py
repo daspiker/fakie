@@ -23,9 +23,14 @@ def script1():
 @app.route('/job', methods=['GET'])
 def job():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
-    
+    files_list=[(file) for file in files]
+
     syslog_form = syslogForm()
     api_form = apiForm()
+
+    syslog_form.syslogLogFileName.choices = files_list
+    api_form.apiLogFileName.choices = files_list
+
 
     syslogSettings = SyslogSettings.query.first()
     if syslogSettings:
@@ -42,19 +47,19 @@ def syslog():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
     syslog_form = syslogForm()
     api_form = apiForm()
-    if syslog_form.validate_on_submit():
+    if syslog_form.submit.data:
         serverIP = str(syslog_form.serverIP.data)
         syslogLogFileName = app.config['UPLOAD_FOLDER'] + str(syslog_form.syslogLogFileName.data)
         subprocess.run(["logger -p auth.info -n " + serverIP + " -t CEF -f " + syslogLogFileName], shell=True)
         print("syslog data collected: " + serverIP + " " + syslogLogFileName)
-    return render_template('job.html', files=files, syslog_form=syslog_form, api_form=api_form)
+    return redirect(url_for('job'))
 
 @app.route('/api', methods=['POST'])
 def api():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
     syslog_form = syslogForm()
     api_form = apiForm()
-    if api_form.validate_on_submit():
+    if api_form.submit.data:
         workspaceId = str(api_form.workspaceId.data)
         workspaceKey = str(api_form.workspaceKey.data)
         tableName = str(api_form.tableName.data)
@@ -65,7 +70,7 @@ def api():
             for entry in data:
                 with sentinel:
                     sentinel.send(entry)
-    return render_template('job.html', files=files, syslog_form=syslog_form, api_form=api_form)
+    return redirect(url_for('job'))
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():

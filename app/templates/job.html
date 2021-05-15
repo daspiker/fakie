@@ -3,12 +3,6 @@
 {% block content %}
     <!doctype html>
     <title>Job</title>
-    <h1>Files</h1>
-    <ul>
-    {%- for file in files %}
-        <li>{{ file }}
-    {%- endfor %}
-    </ul>
     <h1>Syslog Collector Settings</h1>
     <form action="{{ url_for('syslog') }}" method=post novalidate>
         {{ syslog_form.hidden_tag() }}
@@ -20,12 +14,12 @@
             {% endfor %}
         </p>
         <p>
-            {{ syslog_form.syslogLogFileName.label }}<br>
-            {{ syslog_form.syslogLogFileName(size=64) }}
-            {% for error in syslog_form.syslogLogFileName.errors %}
+           {{ syslog_form.syslogLogFileName }} 
+           {% for error in syslog_form.syslogLogFileName.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+
         <p>{{ syslog_form.submit() }}</p>
     </form>
 
@@ -54,12 +48,11 @@
             {% endfor %}
         </p>
         <p>
-            {{ api_form.apiLogFileName.label }}<br>
-            {{ api_form.apiLogFileName(size=64) }}
+            {{ api_form.apiLogFileName }} 
             {% for error in api_form.apiLogFileName.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
+             <span style="color: red;">[{{ error }}]</span>
+             {% endfor %}
+         </p>
         <p>{{ api_form.submit() }}</p>
     </form>
     
