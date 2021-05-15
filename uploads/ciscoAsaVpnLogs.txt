@@ -1,0 +1,4 @@
+May 07 2021 14:10:42: %ASA-4-713184: Group = FF-Q1-2009, Username = joe-smoe, IP = 91.223.67.57, Client Type: WinNT Client Application Version: 4.6.03.0021
+May 07 2021 14:10:43: %ASA-4-713049: Group = FF-Q1-2009, Username = joe-smoe, IP = 91.223.67.57, Security negotiation complete for User (joe-smoe) Responder, Inbound SPI = 0x1b9894 Outbound SPI = 0x48b9aa5e
+May 07 2021 14:10:44: %ASA-4-713050: Group = FF-Q1-2009, Username = joe-smoe, IP = 91.223.67.57, Connection terminated for peer joe-smoe. Reason: Peer Terminate Remote Proxy 172.1.237, Local Proxy 0.0.0.0
+May 07 2021 14:10:45: %ASA-4-113019: Group = FF-Q1-2009, Username = joe-smoe, IP = 91.223.67.57, Session disconnected. Session Type: IKE, Duration: 2h:05m:55s, Bytes xmt: 8856072, Bs rcv: 2420624, Reason: Unknown

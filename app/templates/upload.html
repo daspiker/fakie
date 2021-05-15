@@ -8,10 +8,41 @@
         <p><input type="file" name="file">
         <p><input type = "submit" value = "Upload File" /></p>
     </form>
-    <h1>Files</h1>
-    <ul>
-    {%- for file in files %}
-        <li>{{ file }}
-    {%- endfor %}
-    </ul>
+    <h1 style="text-align:center;">Uploaded Files</h1>
+        {% if files %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="70%"> Name </th>
+                  <th width="15%"> Delete </th>
+                  <th width="15%"> View </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for file in files %}
+                <tr>
+                  <td> {{ file }} </td>
+                  <td>
+                    <a href="{{ url_for('deletefile', id=file) }}">
+                      <i class="fa fa-pencil"></i> Delete 
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{{ url_for('viewfile', id=file) }}">
+                      <i class="fa fa-trash"></i> View 
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No files have been uploaded. </h3>
+            <hr class="intro-divider">
+        {% endif %}
 {% endblock %}

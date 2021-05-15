@@ -1,0 +1,24 @@
+May 07 2021 14:10:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:11:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:12:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:13:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:14:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:15:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:16:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:17:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:18:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNETe
+May 07 2021 14:19:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:20:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:21:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:22:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:23:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:24:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:25:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:26:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:27:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:28:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:29:30: %ASA-3-713017: IP = 91.223.67.57, Identification type not supported, Phase 1 or 2, Type IPV4_ADDR_SUBNET
+May 07 2021 14:30:42: %ASA-4-713184: Group = FF-Q1-2009, Username = joe-smoe, IP = 91.223.67.57, Client Type: WinNT Client Application Version: 4.6.03.0021
+May 07 2021 14:31:43: %ASA-4-713049: Group = FF-Q1-2009, Username = joe-smoe, IP = 91.223.67.57, Security negotiation complete for User (joe-smoe) Responder, Inbound SPI = 0x1b9894 Outbound SPI = 0x48b9aa5e
+May 07 2021 14:32:44: %ASA-4-713050: Group = FF-Q1-2009, Username = joe-smoe, IP = 91.223.67.57, Connection terminated for peer joe-smoe. Reason: Peer Terminate Remote Proxy 172.1.237, Local Proxy 0.0.0.0
+May 07 2021 14:33:45: %ASA-4-113019: Group = FF-Q1-2009, Username = joe-smoe, IP = 91.223.67.57, Session disconnected. Session Type: IKE, Duration: 2h:05m:55s, Bytes xmt: 8856072, Bs rcv: 2420624, Reason: Unknown

@@ -1,4 +1,4 @@
-from flask import Flask,flash,request,redirect,send_file,render_template
+from flask import Flask,flash,request,redirect,send_file,render_template, url_for
 from app import app
 from werkzeug.utils import secure_filename
 import os
@@ -87,6 +87,21 @@ def upload():
             print("saved file successfully")
             files = os.listdir(app.config['UPLOAD_FOLDER'])  
     return render_template('upload.html', files=files)
+
+@app.route('/deletefile/<id>', methods=['GET'])
+def deletefile(id):
+    file = id
+    os.remove(app.config['UPLOAD_FOLDER'] + file)
+    flash('You have successfully deleted the file.')
+    return redirect(url_for('upload'))
+    return render_template(title="Delete File")
+
+@app.route('/viewfile/<id>', methods=['GET'])
+def viewfile(id):
+    filename = id
+    file = open(app.config['UPLOAD_FOLDER'] + filename, "r")
+    fileoutput = file.read()
+    return render_template('viewfile.html', filename=filename, fileoutput=fileoutput)
 
 @app.route('/settings', methods=['GET'])
 def settings():
