@@ -47,7 +47,7 @@ def syslog():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
     syslog_form = syslogForm()
     api_form = apiForm()
-    if syslog_form.submit.data:
+    if syslog_form.validate_on_submit():
         serverIP = str(syslog_form.serverIP.data)
         syslogLogFileName = app.config['UPLOAD_FOLDER'] + str(syslog_form.syslogLogFileName.data)
         subprocess.run(["logger -p auth.info -n " + serverIP + " -t CEF -f " + syslogLogFileName], shell=True)
@@ -59,11 +59,12 @@ def api():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
     syslog_form = syslogForm()
     api_form = apiForm()
-    if api_form.submit.data:
+    if api_form.validate_on_submit():
         workspaceId = str(api_form.workspaceId.data)
         workspaceKey = str(api_form.workspaceKey.data)
         tableName = str(api_form.tableName.data)
         apiLogFileName = app.config['UPLOAD_FOLDER'] + str(api_form.apiLogFileName.data)
+        print(workspaceId + " " + workspaceKey + " " + tableName + " " + apiLogFileName)
         sentinel = AzureSentinelConnector(workspaceId, workspaceKey, tableName, queue_size=10000, bulks_number=10)
         with open(apiLogFileName, "r") as read_file:
             data = json.load(read_file)
@@ -140,7 +141,7 @@ def apiSettings():
     if apiSettings_form.validate_on_submit():
         workspaceId = str(apiSettings_form.workspaceId.data)
         workspaceKey = str(apiSettings_form.workspaceKey.data)
-        apisettings = ApiSettings(workspaceId=syslogSettings_form.workspaceId.data, workspaceKey=syslogSettings_form.workspaceKey.data)
+        apisettings = ApiSettings(workspaceId=apiSettings_form.workspaceId.data, workspaceKey=apiSettings_form.workspaceKey.data)
         db.session.query(ApiSettings).delete()
         db.session.add(apisettings)
         db.session.commit()

@@ -5,16 +5,14 @@ from app.models import SyslogSettings, ApiSettings
 
 class syslogForm(FlaskForm):
     serverIP = StringField('Syslog Server Hostname or IP Address', validators=[DataRequired()])
-    #syslogLogFileName = StringField('Log Filename', validators=[DataRequired()])
-    syslogLogFileName = SelectField('SyslogFilename', coerce=str)
+    syslogLogFileName = SelectField('SyslogFilename', validate_choice=False)
     submit = SubmitField('Run Syslog Job')
 
 class apiForm(FlaskForm):
     workspaceId = StringField('Sentinel Workspace ID', validators=[DataRequired()])
     workspaceKey = StringField('Sentinel Workspace Key', validators=[DataRequired()])
     tableName = StringField('Table Name', validators=[DataRequired()])
-    #apiLogFileName = StringField('Log Filename', validators=[DataRequired()])
-    apiLogFileName = SelectField('ApiFilename', coerce=str)
+    apiLogFileName = SelectField('ApiFilename', validate_choice=False)
     submit = SubmitField('Run API Job')
 
 class syslogSettingsForm(FlaskForm):
