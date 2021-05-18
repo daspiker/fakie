@@ -4,6 +4,8 @@
     <!doctype html>
     <title>Upload a Log File</title>
     <h1>Pick a File</h1>
+    <b>Syslog requires Syslog or CEF encoded Syslog files with one log entry per line.  API upload requires JSON encoded log files.  File extension is not verified. </b>
+    <br><br>
     <form action="" method=post enctype=multipart/form-data>
         <p><input type="file" name="file">
         <p><input type = "submit" value = "Upload File" /></p>
