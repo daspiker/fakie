@@ -31,7 +31,11 @@ Fakie supports:
  - Saving Syslog and API Settings for ease of use
 
 ### Usage
-Go here for how to run via Docker in Windows 10:
+Go here for how to install Docker in Windows 10:
+https://docs.docker.com/docker-for-windows/install/
+
+
+
 Go here for an overview how to use Fakie:
 
 ### Contributing
