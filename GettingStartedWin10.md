@@ -1,12 +1,12 @@
 ## ***From Zero to Fakie: How to install and configure Docker and get Fakie running on Windows 10*** 
 
-### Install Docker Desktop: 
+**Install Docker Desktop:** 
 
 -Download here: [Docker Hub](https://hub.docker.com/) (also, use this opportunity to create a Docker Hub Account, if you don’t have one) 
 
 DON’T “try running a container” as the app suggests. We’ll get to that… 
 
--Install and Enable WSL2 
+**Install and Enable WSL2** 
 
 [Install WSL on Windows 10 | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install-win10) 
 
@@ -34,11 +34,15 @@ Then you’ll be able to change to WSL 2 by running this command, grabbing the D
 
 `wsl --set-version <distribution name> 2` 
 
+**Install and Run Ubuntu**
+
 -If you don’t already have it, download Ubuntu 18.04 from your Windows Store (which will now be installed with WSL 2 as the default): 
 
 ![ubuntu1](https://github.com/daspiker/fakie/blob/main/app/static/gswin10_ubuntu1.png)
 
 -Run it. 
+
+**Set-up Docker Desktop**
 
 -Open Docker Desktop and log in. 
 
@@ -57,6 +61,8 @@ Then you’ll be able to change to WSL 2 by running this command, grabbing the D
 -Apply & Restart. 
 
 -Navigate to “Images.” (It will be empty, unless you made the mistake of running the pointless one suggested by the app). 
+
+**Pull and Run Fakie Container**
 
 -Go back to your Ubuntu Terminal. (Here’s where the Magic Happens): 
 
