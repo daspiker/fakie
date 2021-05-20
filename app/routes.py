@@ -52,6 +52,7 @@ def syslog():
         syslogLogFileName = app.config['UPLOAD_FOLDER'] + str(syslog_form.syslogLogFileName.data)
         subprocess.run(["logger -p auth.info -n " + serverIP + " -t CEF -f " + syslogLogFileName], shell=True)
         print("syslog data collected: " + serverIP + " " + syslogLogFileName)
+        flash("Data sent to Sentinel via Syslog collector Successfully")
     return redirect(url_for('job'))
 
 @app.route('/api', methods=['POST'])
@@ -71,6 +72,7 @@ def api():
             for entry in data:
                 with sentinel:
                     sentinel.send(entry)
+            flash("Data sent to Sentinel via API successfully")
     return redirect(url_for('job'))
 
 @app.route('/upload', methods=['GET', 'POST'])
@@ -90,7 +92,7 @@ def upload():
         else:
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            print("saved file successfully")
+            flash("saved file successfully")
             files = os.listdir(app.config['UPLOAD_FOLDER'])  
     return render_template('upload.html', files=files)
 

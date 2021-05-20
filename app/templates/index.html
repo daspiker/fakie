@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+    {{super()}}
     <h1>Welcome to Fakie!</h1>
     <body>
         <div><img src="{{url_for('static', filename='fakie.jpg')}}"/></div>

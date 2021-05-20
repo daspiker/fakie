@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+    {{super()}}
     <!doctype html>
     <title>Job</title>
     <h1>Syslog Collector Settings</h1>
@@ -15,16 +16,13 @@
         </p>
         <p>
            {{ syslog_form.syslogLogFileName }} 
-           {% for error in syslog_form.syslogLogFileName.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
         </p>
 
         <p>{{ syslog_form.submit() }}</p>
     </form>
 
     <h1>API Settings</h1>
-    <form action="{{ url_for('api') }}" method=post novalidate>
+    <form action="{{ url_for('api') }}" method=post>
         {{ api_form.hidden_tag() }}
         <p>
             {{ api_form.workspaceId.label }}<br>
@@ -48,10 +46,7 @@
             {% endfor %}
         </p>
         <p>
-            {{ api_form.apiLogFileName }} 
-            {% for error in api_form.apiLogFileName.errors %}
-             <span style="color: red;">[{{ error }}]</span>
-             {% endfor %}
+            {{ api_form.apiLogFileName(formnovalidate=True) }} 
          </p>
         <p>{{ api_form.submit() }}</p>
     </form>
