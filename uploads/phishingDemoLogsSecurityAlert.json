@@ -1,0 +1,32 @@
+[{
+	"DeviceVendor":"Microsoft",
+	"DeviceProduct":"OATP",
+	"Activity":"Email reported by user as malware or phish",
+	"MailboxPrimaryAddress":"gbbDemoUser@damdemo.ca",
+	"NetworkMessageId":"2a6e9bb5-2e79-477d-c553-08d91618802e",
+	"Url":"https://nsi-service-web.space/"
+},
+{
+	"DeviceVendor":"Microsoft",
+	"DeviceProduct":"OATP",
+	"Activity":"Email reported by user as malware or phish",
+	"MailboxPrimaryAddress":"gbbDemoUser@damdemo.ca",
+	"NetworkMessageId":"2a6e9bb5-2e79-477d-c553-08d91618802e",
+	"Url":"http://www.microsoft.com/"
+},
+{
+	"DeviceVendor":"Microsoft",
+	"DeviceProduct":"OATP",
+	"Activity":"Email reported by user as malware or phish",
+	"MailboxPrimaryAddress":"gbbDemoUser@damdemo.ca",
+	"NetworkMessageId":"2a6e9bb5-2e79-477d-c553-08d91618802e",
+	"Url":"https://www.github.com/"
+},
+{
+	"DeviceVendor":"Microsoft",
+	"DeviceProduct":"OATP",
+	"Activity":"Email reported by user as malware or phish",
+	"MailboxPrimaryAddress":"gbbDemoUser@damdemo.ca",
+	"NetworkMessageId":"2a6e9bb5-2e79-477d-c553-08d91618802e",
+	"Url":"https://www.linkedin.com/"
+}]

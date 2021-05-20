@@ -1,15 +1,15 @@
 [{
 	"name":"dennis",
-	"title":"gbb",
-	"favoriteColor":"green"
+	"title":"GBB",
+	"message":"test"
 },
 {
 	"name":"beth",
-	"title":"gbb",
-	"favoriteColor":"tbd"
+	"title":"global black belt",
+	"message":"test"
 },
 {
 	"name":"umesh",
 	"title":"gbb",
-	"favoriteColor":"tbd"
+	"message":"test"
 }]

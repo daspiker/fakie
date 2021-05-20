@@ -22,6 +22,8 @@ COPY app app
 COPY migrations migrations
 COPY fakie.py config.py boot.sh ./
 RUN mkdir uploads
+COPY uploads/testCEF.txt uploads/testCEF.txt
+COPY uploads/testJson.json uploads/testJson.json
 RUN chmod +x boot.sh
 RUN chmod 770 uploads
 

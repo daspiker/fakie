@@ -1,0 +1,72 @@
+[{
+	"DeviceVendor":"Microsoft",
+	"DeviceProduct":"Defender for Endpoint",
+	"ActionType":"ConnectionFailed",
+	"DeviceId":"8fa023eefe902c190ee4b4ff09cffcecc13ba030",
+	"DeviceName":"GBBDemoUser1",
+	"InitiatingProcessFileName":"Edge.exe",
+	"RemoteUrl":"https://nsi-service-web.space/"
+},
+{
+	"DeviceVendor":"Microsoft",
+	"DeviceProduct":"Defender for Endpoint",
+	"ActionType":"ConnectionSuccess",
+	"DeviceId":"8fa023eefe902c190ee4b4ff09cffcecc13ba030",
+	"DeviceName":"GBBDemoUser1",
+	"InitiatingProcessFileName":"Edge.exe",
+	"RemoteUrl":"http://www.microsoft.com/"
+},
+{
+	"DeviceVendor":"Microsoft",
+	"DeviceProduct":"Defender for Endpoint",
+	"ActionType":"ConnectionSuccess",
+	"DeviceId":"8fa023eefe902c190ee4b4ff09cffcecc13ba030",
+	"DeviceName":"GBBDemoUser1",
+	"InitiatingProcessFileName":"Edge.exe",
+	"RemoteUrl":"https://www.github.com/"
+},
+{
+	"DeviceVendor":"Microsoft",
+	"DeviceProduct":"Defender for Endpoint",
+	"ActionType":"ConnectionSuccess",
+	"DeviceId":"8fa023eefe902c190ee4b4ff09cffcecc13ba030",
+	"DeviceName":"GBBDemoUser1",
+	"InitiatingProcessFileName":"Edge.exe",
+	"RemoteUrl":"https://www.linkedin.com/"
+},
+{
+	"DeviceVendor":"Microsoft",
+	"DeviceProduct":"Defender for Endpoint",
+	"ActionType":"ConnectionFailed",
+	"DeviceId":"8fa023eefe902c190ee4b4ff09cffcecc13ba030",
+	"DeviceName":"GBBDemoUser1",
+	"InitiatingProcessFileName":"Exchange.exe",
+	"RemoteUrl":"https://nsi-service-web.space/"
+},
+{
+	"DeviceVendor":"Microsoft",
+	"DeviceProduct":"Defender for Endpoint",
+	"ActionType":"ConnectionSuccess",
+	"DeviceId":"8fa023eefe902c190ee4b4ff09cffcecc13ba030",
+	"DeviceName":"GBBDemoUser1",
+	"InitiatingProcessFileName":"Exchange.exe",
+	"RemoteUrl":"http://www.microsoft.com/"
+},
+{
+	"DeviceVendor":"Microsoft",
+	"DeviceProduct":"Defender for Endpoint",
+	"ActionType":"ConnectionSuccess",
+	"DeviceId":"8fa023eefe902c190ee4b4ff09cffcecc13ba030",
+	"DeviceName":"GBBDemoUser1",
+	"InitiatingProcessFileName":"Exchange.exe",
+	"RemoteUrl":"https://www.github.com/"
+},
+{
+	"DeviceVendor":"Microsoft",
+	"DeviceProduct":"Defender for Endpoint",
+	"ActionType":"ConnectionSuccess",
+	"DeviceId":"8fa023eefe902c190ee4b4ff09cffcecc13ba030",
+	"DeviceName":"GBBDemoUser1",
+	"InitiatingProcessFileName":"Exchange.exe",
+	"RemoteUrl":"https://www.linkedin.com/"
+}]
