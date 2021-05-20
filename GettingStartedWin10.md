@@ -6,10 +6,6 @@
 
 DON’T “try running a container” as the app suggests. We’ll get to that… 
 
--Open Powershell as an admin and run: 
-
-`dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart` 
-
 -Install and Enable WSL2 
 
 [Install WSL on Windows 10 | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/install-win10) 
