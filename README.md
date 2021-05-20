@@ -26,17 +26,19 @@ Fakie aims to make it easy to push logs into Azure Sentinel.
 Fakie supports:
  - Log file upload and storage 
  - Submission of files to Azure Sentinel via 
-    - Syslog and CEF formatted Syslog files to Syslog Collector (currently external only)
-    - JSON formatted files to Sentinel API 
+        - Syslog and CEF formatted Syslog files to Syslog Collector (currently external only)
+        - JSON formatted files to Sentinel API 
  - Saving Syslog and API Settings for ease of use
 
 ### Usage
-Go here for how to install Docker in Windows 10:
-https://docs.docker.com/docker-for-windows/install/
+Docker Getting Started:
+https://docs.docker.com/get-started/
 
+From Zero to Fakie: install and configure Docker and get Fakie running in Windows 10:
+https://github.com/daspiker/fakie/blob/main/GettingStartedWin10.md
 
-
-Go here for an overview how to use Fakie:
+How to use Fakie:
+In the works!  Tony Hawk has been ghosting us!
 
 ### Contributing
 No one wants to Fakie alone!  Please reach out via the Issues link in this repo if you find a problem, have feedback or would like to get involved in contributing.  We follow a normal Pull Request process for submissions. 
