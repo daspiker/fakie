@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {{super()}}
+{{super()}}
     <!doctype html>
     <title>Settings</title>
     <h1>Syslog Collector Settings</h1>
-    <form action="{{ url_for('syslogSettings') }}" method=post novalidate>
+    <form action="{{ url_for('syslogSettings') }}" method=post>
         {{ syslogSettings_form.hidden_tag() }}
         <p>
             {{ syslogSettings_form.serverIP.label }}<br>
@@ -18,7 +18,7 @@
     </form>
 
     <h1>API Settings</h1>
-    <form action="{{ url_for('apiSettings') }}" method=post novalidate>
+    <form action="{{ url_for('apiSettings') }}" method=post>
         {{ apiSettings_form.hidden_tag() }}
         <p>
             {{ apiSettings_form.workspaceId.label }}<br>

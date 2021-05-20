@@ -5,7 +5,7 @@
     <!doctype html>
     <title>Job</title>
     <h1>Syslog Collector Settings</h1>
-    <form action="{{ url_for('syslog') }}" method=post novalidate>
+    <form action="{{ url_for('syslog') }}" method=post>
         {{ syslog_form.hidden_tag() }}
         <p>
             {{ syslog_form.serverIP.label }}<br>

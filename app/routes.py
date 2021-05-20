@@ -31,7 +31,6 @@ def job():
     syslog_form.syslogLogFileName.choices = files_list
     api_form.apiLogFileName.choices = files_list
 
-
     syslogSettings = SyslogSettings.query.first()
     if syslogSettings:
         syslog_form.serverIP.data = syslogSettings.serverIP
@@ -52,7 +51,7 @@ def syslog():
         syslogLogFileName = app.config['UPLOAD_FOLDER'] + str(syslog_form.syslogLogFileName.data)
         subprocess.run(["logger -p auth.info -n " + serverIP + " -t CEF -f " + syslogLogFileName], shell=True)
         print("syslog data collected: " + serverIP + " " + syslogLogFileName)
-        flash("Data sent to Sentinel via Syslog collector Successfully")
+        flash("Logs successfully sent to syslog server")
     return redirect(url_for('job'))
 
 @app.route('/api', methods=['POST'])
@@ -72,7 +71,7 @@ def api():
             for entry in data:
                 with sentinel:
                     sentinel.send(entry)
-            flash("Data sent to Sentinel via API successfully")
+            flash("Logs successfully sent to API")
     return redirect(url_for('job'))
 
 @app.route('/upload', methods=['GET', 'POST'])
@@ -92,7 +91,7 @@ def upload():
         else:
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            flash("saved file successfully")
+            flash("File uploaded successfully")
             files = os.listdir(app.config['UPLOAD_FOLDER'])  
     return render_template('upload.html', files=files)
 
@@ -100,7 +99,7 @@ def upload():
 def deletefile(id):
     file = id
     os.remove(app.config['UPLOAD_FOLDER'] + file)
-    flash('You have successfully deleted the file.')
+    flash('File successfully deleted')
     return redirect(url_for('upload'))
     return render_template(title="Delete File")
 
@@ -134,6 +133,13 @@ def syslogSettings():
         db.session.add(syslogsettings)
         db.session.commit()
         flash('Syslog Settings Successfully Saved')
+    syslogSettings = SyslogSettings.query.first()
+    if syslogSettings: 
+        syslogSettings_form.serverIP.data = syslogSettings.serverIP
+    apiSettings = ApiSettings.query.first()
+    if apiSettings:
+        apiSettings_form.workspaceId.data = apiSettings.workspaceId
+        apiSettings_form.workspaceKey.data = apiSettings.workspaceKey
     return render_template('settings.html',syslogSettings_form=syslogSettings_form, apiSettings_form=apiSettings_form)
 
 @app.route('/apiSettings', methods=['POST'])
@@ -148,4 +154,11 @@ def apiSettings():
         db.session.add(apisettings)
         db.session.commit()
         flash('API Settings Successfully Saved')
+    syslogSettings = SyslogSettings.query.first()
+    if syslogSettings: 
+        syslogSettings_form.serverIP.data = syslogSettings.serverIP
+    apiSettings = ApiSettings.query.first()
+    if apiSettings:
+        apiSettings_form.workspaceId.data = apiSettings.workspaceId
+        apiSettings_form.workspaceKey.data = apiSettings.workspaceKey
     return render_template('settings.html', syslogSettings_form=syslogSettings_form, apiSettings_form=apiSettings_form)
