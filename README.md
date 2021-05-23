@@ -37,8 +37,8 @@ https://docs.docker.com/get-started/
 From Zero to Fakie: install and configure Docker and get Fakie running in Windows 10:
 https://github.com/daspiker/fakie/blob/main/GettingStartedWin10.md
 
-How to use Fakie:
-In the works!  Tony Hawk has been ghosting us!
+How to Fakie:
+https://github.com/daspiker/fakie/blob/main/HowToFakie.md
 
 ### Contributing
 No one wants to Fakie alone!  Please reach out via the Issues link in this repo if you find a problem, have feedback or would like to get involved in contributing.  We follow a normal Pull Request process for submissions. 

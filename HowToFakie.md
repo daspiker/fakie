@@ -22,7 +22,7 @@ This animation shows how to upload your own:
 
 You don't have to do this step but you can enter you Syslog/CEF collector IP address and/or API Log Analytics Workspace information here once and it is saved and will be the default in the Job section.
 
-Fakie does not current support its own Syslog/CEF collector so you will need to have one configured and working that you can reach from the machine running Fakie.
+Fakie does not currently support its own Syslog/CEF collector so you will need to have one configured and working that you can reach from the machine running Fakie.
 
 The Log Analytics Workspace Settings can be found at:
 
