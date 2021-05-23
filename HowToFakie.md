@@ -9,8 +9,8 @@ Once you have Fakie up and running and can reach the website, how do you use it?
 
 There are two log files included:
 
-testJson.json - this is a known good test file for the API job option
-testCEF.txt - this is a known good test file for the CEF job option
+- testJson.json - this is a known good test file for the API job option
+- testCEF.txt - this is a known good test file for the CEF job option
 
 The Syslog/CEF Collector will only work with syslog or CEF encoded syslog.  The API will only work with JSON encoded files.  Fakie does not verify the format of the files.  The test files will verify if things are working with a known good file.  If that works and your file doesn't then it likely isn't properly formatted logs.
 
