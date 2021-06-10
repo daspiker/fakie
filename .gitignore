@@ -131,3 +131,9 @@ dmypy.json
 # vscode files
 .vscode
 .vscode/
+
+#local database
+app.db
+
+#testing files
+uploads/phishing*
