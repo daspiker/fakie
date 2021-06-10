@@ -5,14 +5,10 @@
     <!doctype html>
     <title>Job</title>
     <h1>Syslog Collector Settings</h1>
-    <form action="{{ url_for('syslog') }}" method=post>
+    <form action="{{ url_for('syslog') }}" method=post novalidate>
         {{ syslog_form.hidden_tag() }}
         <p>
-            {{ syslog_form.serverIP.label }}<br>
-            {{ syslog_form.serverIP(size=64) }}
-            {% for error in syslog_form.serverIP.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            {{ syslog_form.syslogCollector }} 
         </p>
         <p>
            {{ syslog_form.syslogLogFileName }} 
@@ -22,21 +18,10 @@
     </form>
 
     <h1>API Settings</h1>
-    <form action="{{ url_for('api') }}" method=post>
+    <form action="{{ url_for('api') }}" method=post novalidate>
         {{ api_form.hidden_tag() }}
         <p>
-            {{ api_form.workspaceId.label }}<br>
-            {{ api_form.workspaceId(size=64) }}
-            {% for error in api_form.workspaceId.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ api_form.workspaceKey.label }}<br>
-            {{ api_form.workspaceKey(size=128) }}
-            {% for error in api_form.workspaceKey.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            {{ api_form.apiWorkspace }} 
         </p>
         <p>
             {{ api_form.tableName.label }}<br>
@@ -46,7 +31,7 @@
             {% endfor %}
         </p>
         <p>
-            {{ api_form.apiLogFileName(formnovalidate=True) }} 
+            {{ api_form.apiLogFileName }} 
          </p>
         <p>{{ api_form.submit() }}</p>
     </form>

@@ -4,15 +4,14 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Le
 from app.models import SyslogSettings, ApiSettings
 
 class syslogForm(FlaskForm):
-    serverIP = StringField('Syslog Server Hostname or IP Address', validators=[DataRequired()])
-    syslogLogFileName = SelectField('SyslogFilename', validate_choice=False)
+    syslogCollector = SelectField('Syslog Collector', validate_choice=False)
+    syslogLogFileName = SelectField('Syslog Filename', validate_choice=False)
     submit = SubmitField('Run Syslog Job')
 
 class apiForm(FlaskForm):
-    workspaceId = StringField('Sentinel Workspace ID', validators=[DataRequired()])
-    workspaceKey = StringField('Sentinel Workspace Key', validators=[DataRequired()])
+    apiWorkspace = SelectField('API Workspace', validate_choice=False)
     tableName = StringField('Table Name', validators=[DataRequired()])
-    apiLogFileName = SelectField('ApiFilename', validate_choice=False)
+    apiLogFileName = SelectField('API Filename', validate_choice=False)
     submit = SubmitField('Run API Job')
 
 class syslogSettingsForm(FlaskForm):

@@ -31,23 +31,17 @@ def job():
     syslog_form.syslogLogFileName.choices = files_list
     api_form.apiLogFileName.choices = files_list
 
-    syslogSettings = SyslogSettings.query.first()
-    if syslogSettings:
-        syslog_form.serverIP.data = syslogSettings.serverIP
-    apiSettings = ApiSettings.query.first()
-    if apiSettings:
-        api_form.workspaceId.data = apiSettings.workspaceId
-        api_form.workspaceKey.data = apiSettings.workspaceKey
+    syslog_form.syslogCollector.choices = [(s.id, s.serverIP + " " + s.comment) for s in SyslogSettings.query.all()]
+    api_form.apiWorkspace.choices = [(a.id, a.workspaceId + " " + a.comment) for a in ApiSettings.query.all()]
     
     return render_template('job.html', files=files, syslog_form=syslog_form, api_form=api_form)
 
 @app.route('/syslog', methods=['POST'])
 def syslog():
-    files = os.listdir(app.config['UPLOAD_FOLDER'])
     syslog_form = syslogForm()
-    api_form = apiForm()
     if syslog_form.validate_on_submit():
-        serverIP = str(syslog_form.serverIP.data)
+        syslogEntry = SyslogSettings.query.filter_by(id=syslog_form.syslogCollector.data).first()
+        serverIP = str(syslogEntry.serverIP)
         syslogLogFileName = app.config['UPLOAD_FOLDER'] + str(syslog_form.syslogLogFileName.data)
         subprocess.run(["logger -p auth.info -n " + serverIP + " -t CEF -f " + syslogLogFileName], shell=True)
         print("syslog data collected: " + serverIP + " " + syslogLogFileName)
@@ -56,12 +50,11 @@ def syslog():
 
 @app.route('/api', methods=['POST'])
 def api():
-    files = os.listdir(app.config['UPLOAD_FOLDER'])
-    syslog_form = syslogForm()
     api_form = apiForm()
     if api_form.validate_on_submit():
-        workspaceId = str(api_form.workspaceId.data)
-        workspaceKey = str(api_form.workspaceKey.data)
+        apiEntry = ApiSettings.query.filter_by(id=api_form.apiWorkspace.data).first()
+        workspaceId = str(apiEntry.workspaceId)
+        workspaceKey = str(apiEntry.workspaceKey)
         tableName = str(api_form.tableName.data)
         apiLogFileName = app.config['UPLOAD_FOLDER'] + str(api_form.apiLogFileName.data)
         print(workspaceId + " " + workspaceKey + " " + tableName + " " + apiLogFileName)
