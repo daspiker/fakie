@@ -1,4 +1,0 @@
-May 07 2021 14:10:42: %ASA-4-713184: Group = FF-Q1-2009, Username = joe-smoe, IP = 91.223.67.57, Client Type: WinNT Client Application Version: 4.6.03.0021
-May 07 2021 14:11:42: %ASA-4-713184: Group = FF-Q1-2009, Username = joe-smoe, IP = 179.124.202.253, Client Type: WinNT Client Application Version: 4.6.03.0021
-May 07 2021 14:12:42: %ASA-4-713184: Group = FF-Q1-2009, Username = joe-smoe, IP = 113.160.112.125, Client Type: WinNT Client Application Version: 4.6.03.0021
-May 07 2021 14:13:42: %ASA-4-713184: Group = FF-Q1-2009, Username = joe-smoe, IP = 196.45.177.52, Client Type: WinNT Client Application Version: 4.6.03.0021
