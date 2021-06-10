@@ -17,9 +17,11 @@ class apiForm(FlaskForm):
 
 class syslogSettingsForm(FlaskForm):
     serverIP = StringField('Syslog Server Hostname or IP Address', validators=[DataRequired()])
+    comment = StringField('Comment', validators=[Optional()])
     submit = SubmitField('Save Syslog Settings')
 
 class apiSettingsForm(FlaskForm):
     workspaceId = StringField('Sentinel Workspace ID', validators=[DataRequired()])
     workspaceKey = StringField('Sentinel Workspace Key', validators=[DataRequired()])
+    comment = StringField('Comment', validators=[Optional()])
     submit = SubmitField('Save API Settings')

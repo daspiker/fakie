@@ -114,51 +114,48 @@ def viewfile(id):
 def settings():
     syslogSettings_form = syslogSettingsForm()
     apiSettings_form = apiSettingsForm()
-    syslogSettings = SyslogSettings.query.first()
-    if syslogSettings: 
-        syslogSettings_form.serverIP.data = syslogSettings.serverIP
-    apiSettings = ApiSettings.query.first()
-    if apiSettings:
-        apiSettings_form.workspaceId.data = apiSettings.workspaceId
-        apiSettings_form.workspaceKey.data = apiSettings.workspaceKey
-    return render_template('settings.html', syslogSettings_form=syslogSettings_form, apiSettings_form=apiSettings_form)
+    syslogSettingsAll = SyslogSettings.query.all()
+    apiSettingsAll = ApiSettings.query.all()
+    return render_template('settings.html', syslogSettings_form=syslogSettings_form, apiSettings_form=apiSettings_form, syslogSettingsAll=syslogSettingsAll, apiSettingsAll=apiSettingsAll)
 
 @app.route('/syslogSettings', methods=['POST'])
 def syslogSettings():
     syslogSettings_form = syslogSettingsForm()
     apiSettings_form = apiSettingsForm()
     if syslogSettings_form.validate_on_submit():
-        syslogsettings = SyslogSettings(serverIP=syslogSettings_form.serverIP.data)
-        db.session.query(SyslogSettings).delete()
+        syslogsettings = SyslogSettings(serverIP=syslogSettings_form.serverIP.data, comment=syslogSettings_form.comment.data)
         db.session.add(syslogsettings)
         db.session.commit()
         flash('Syslog Settings Successfully Saved')
-    syslogSettings = SyslogSettings.query.first()
-    if syslogSettings: 
-        syslogSettings_form.serverIP.data = syslogSettings.serverIP
-    apiSettings = ApiSettings.query.first()
-    if apiSettings:
-        apiSettings_form.workspaceId.data = apiSettings.workspaceId
-        apiSettings_form.workspaceKey.data = apiSettings.workspaceKey
-    return render_template('settings.html',syslogSettings_form=syslogSettings_form, apiSettings_form=apiSettings_form)
+    syslogSettingsAll = SyslogSettings.query.all()
+    apiSettingsAll = ApiSettings.query.all()
+    return render_template('settings.html',syslogSettings_form=syslogSettings_form, apiSettings_form=apiSettings_form, syslogSettingsAll=syslogSettingsAll, apiSettingsAll=apiSettingsAll)
+
+@app.route('/deletesyslogsetting/<id>', methods=['GET'])
+def deletesyslogsetting(id):
+    syslogsetting = SyslogSettings.query.get_or_404(id)
+    db.session.delete(syslogsetting)
+    db.session.commit()
+    flash('You have successfully deleted the syslog setting.')
+    return redirect(url_for('settings'))
 
 @app.route('/apiSettings', methods=['POST'])
 def apiSettings():
     syslogSettings_form = syslogSettingsForm()
     apiSettings_form = apiSettingsForm()
     if apiSettings_form.validate_on_submit():
-        workspaceId = str(apiSettings_form.workspaceId.data)
-        workspaceKey = str(apiSettings_form.workspaceKey.data)
-        apisettings = ApiSettings(workspaceId=apiSettings_form.workspaceId.data, workspaceKey=apiSettings_form.workspaceKey.data)
-        db.session.query(ApiSettings).delete()
+        apisettings = ApiSettings(workspaceId=apiSettings_form.workspaceId.data, workspaceKey=apiSettings_form.workspaceKey.data, comment=apiSettings_form.comment.data)
         db.session.add(apisettings)
         db.session.commit()
         flash('API Settings Successfully Saved')
-    syslogSettings = SyslogSettings.query.first()
-    if syslogSettings: 
-        syslogSettings_form.serverIP.data = syslogSettings.serverIP
-    apiSettings = ApiSettings.query.first()
-    if apiSettings:
-        apiSettings_form.workspaceId.data = apiSettings.workspaceId
-        apiSettings_form.workspaceKey.data = apiSettings.workspaceKey
-    return render_template('settings.html', syslogSettings_form=syslogSettings_form, apiSettings_form=apiSettings_form)
+    syslogSettingsAll = SyslogSettings.query.all()
+    apiSettingsAll = ApiSettings.query.all()
+    return render_template('settings.html', syslogSettings_form=syslogSettings_form, apiSettings_form=apiSettings_form, syslogSettingsAll=syslogSettingsAll, apiSettingsAll=apiSettingsAll)
+
+@app.route('/deleteapisetting/<id>', methods=['GET'])
+def deleteapisetting(id):
+    apisetting = ApiSettings.query.get_or_404(id)
+    db.session.delete(apisetting)
+    db.session.commit()
+    flash('You have successfully deleted the api setting.')
+    return redirect(url_for('settings'))

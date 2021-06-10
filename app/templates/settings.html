@@ -4,7 +4,7 @@
 {{super()}}
     <!doctype html>
     <title>Settings</title>
-    <h1>Syslog Collector Settings</h1>
+    <h1>Add Syslog Collector Settings</h1>
     <form action="{{ url_for('syslogSettings') }}" method=post>
         {{ syslogSettings_form.hidden_tag() }}
         <p>
@@ -14,10 +14,51 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        <p>
+            {{ syslogSettings_form.comment.label }}<br>
+            {{ syslogSettings_form.comment(size=128) }}
+            {% for error in syslogSettings_form.serverIP.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
         <p>{{ syslogSettings_form.submit() }}</p>
     </form>
 
-    <h1>API Settings</h1>
+    <h1>Existing Syslog Collector Settings</h1>
+        {% if syslogSettingsAll %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="20%"> Syslog Server IP </th>
+                  <th width="20%"> Comment </th>
+                  <th width="15%"> Delete </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for syslogSetting in syslogSettingsAll %}
+                <tr>
+                  <td> {{ syslogSetting.serverIP }} </td>
+                  <td> {{ syslogSetting.comment }} </td>
+                  <td>
+                    <a href="{{ url_for('deletesyslogsetting', id=syslogSetting.id) }}">
+                        <i class="fa fa-pencil"></i> Delete 
+                     </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div style="text-align: center">
+            <h3> No syslog setting have been set. </h3>
+            <hr class="intro-divider">
+        </div>
+        {% endif %}
+
+    <h1>Add API Settings</h1>
     <form action="{{ url_for('apiSettings') }}" method=post>
         {{ apiSettings_form.hidden_tag() }}
         <p>
@@ -34,7 +75,50 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        <p>
+            {{ apiSettings_form.comment.label }}<br>
+            {{ apiSettings_form.comment(size=128) }}
+            {% for error in apiSettings_form.comment.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
         <p>{{ apiSettings_form.submit() }}</p>
     </form>
+
+    <h1>Existing API Settings</h1>
+        {% if apiSettingsAll %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="15%"> Workspace ID </th>
+                  <th width="35%"> Workspace Key </th>
+                  <th width="20%"> Comment </th>
+                  <th width="15%"> Delete </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for apiSetting in apiSettingsAll %}
+                <tr>
+                  <td> {{ apiSetting.workspaceId }} </td>
+                  <td> {{ apiSetting.workspaceKey }} </td>
+                  <td> {{ apiSetting.comment }} </td>
+                  <td>
+                    <a href="{{ url_for('deleteapisetting', id=apiSetting.id) }}">
+                        <i class="fa fa-pencil"></i> Delete 
+                     </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div style="text-align: center">
+            <h3> No api settings have been set. </h3>
+            <hr class="intro-divider">
+        </div>
+        {% endif %}
     
 {% endblock %}
