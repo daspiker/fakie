@@ -1,5 +1,0 @@
-May 07 2021 14:10:42: %ASA-6-113012: AAA user authentication Successful : local database : user = admin
-May 07 2021 14:11:42: %ASA-6-113008: AAA transaction status ACCEPT : user = admin
-May 07 2021 14:12:42: %ASA-6-611101: User authentication succeeded: Uname: admin
-May 07 2021 14:13:42: %ASA-6-611101: User authentication succeeded: Uname: admin
-May 07 2021 14:14:42: %ASA-6-605005: Login permitted from 91.223.67.57/2826 to outside:91.223.67.58/ssh for user "admin"
