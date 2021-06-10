@@ -1,4 +1,0 @@
-CEF:0|Microsoft|OATP|1.0|0|Email reported by user as malware or phish|5|duser=meganb@M365x679095.onmicrosoft.com duid=2a6e9bb5-2e79-477d-c553-08d91618802e request=https://nsi-service-web.space/ msg=this is a test
-CEF:0|Microsoft|OATP|1.0|0|Email reported by user as malware or phish|5|duser=meganb@M365x679095.onmicrosoft.com duid=2a6e9bb5-2e79-477d-c553-08d91618802e request=http://www.microsoft.com msg=this is a test
-CEF:0|Microsoft|OATP|1.0|0|Email reported by user as malware or phish|5|duser=meganb@M365x679095.onmicrosoft.com duid=2a6e9bb5-2e79-477d-c553-08d91618802e request=https://www.github.com msg=this is a test
-CEF:0|Microsoft|OATP|1.0|0|Email reported by user as malware or phish|5|duser=meganb@M365x679095.onmicrosoft.com duid=2a6e9bb5-2e79-477d-c553-08d91618802e request=https://www.linkedin.com msg=this is a test
