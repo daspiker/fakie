@@ -4,7 +4,7 @@ RUN apt-get install build-essential libssl-dev libffi-dev python3-dev -y
 RUN apt-get install python3-venv -y
 RUN apt-get install python3-pip -y
 RUN apt-get install python3-setuptools -y
-RUN apt-get install -y cron
+RUN apt-get -y install cron
 #RUN pip3 install --upgrade pip
 #RUN pip3 install setuptools
 #RUN pip3 install setuptools_rust
@@ -15,6 +15,7 @@ RUN adduser fakie
 WORKDIR /home/fakie
 
 COPY requirements.txt requirements.txt
+
 RUN python3 -m venv venv
 RUN venv/bin/pip install -r requirements.txt
 RUN venv/bin/pip install gunicorn
@@ -25,9 +26,14 @@ COPY fakie.py config.py boot.sh run.sh crontab.txt ./
 RUN mkdir uploads
 COPY uploads/testCEF.txt uploads/testCEF.txt
 COPY uploads/testJson.json uploads/testJson.json
-RUN chmod +x boot.sh run.sh
+RUN chmod +x boot.sh
 RUN chmod 770 uploads
-RUN /usr/bin/crontab /crontab.txt
+
+COPY hello-cron /etc/cron.d/hello-cron
+RUN chmod 0644 /etc/cron.d/hello-cron
+RUN crontab /etc/cron.d/hello-cron
+RUN touch /var/log/cron.log
+CMD cron && tail -f /var/log/cron.log
 
 ENV FLASK_APP fakie.py
 
