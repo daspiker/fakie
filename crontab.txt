@@ -1,0 +1,1 @@
+*/30 * * * * /run.sh >> /var/log/run.log

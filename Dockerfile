@@ -21,12 +21,13 @@ RUN venv/bin/pip install gunicorn
 
 COPY app app
 COPY migrations migrations
-COPY fakie.py config.py boot.sh run.sh ./
+COPY fakie.py config.py boot.sh run.sh crontab.txt ./
 RUN mkdir uploads
 COPY uploads/testCEF.txt uploads/testCEF.txt
 COPY uploads/testJson.json uploads/testJson.json
 RUN chmod +x boot.sh run.sh
 RUN chmod 770 uploads
+RUN /usr/bin/crontab /crontab.txt
 
 ENV FLASK_APP fakie.py
 
