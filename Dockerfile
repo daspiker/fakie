@@ -22,7 +22,7 @@ RUN venv/bin/pip install gunicorn
 
 COPY app app
 COPY migrations migrations
-COPY fakie.py config.py boot.sh run.sh crontab.txt ./
+COPY fakie.py config.py boot.sh ./
 RUN mkdir uploads
 COPY uploads/testCEF.txt uploads/testCEF.txt
 COPY uploads/testJson.json uploads/testJson.json
@@ -31,14 +31,13 @@ RUN chmod 770 uploads
 
 COPY hello-cron /etc/cron.d/hello-cron
 RUN chmod 0644 /etc/cron.d/hello-cron
-RUN crontab /etc/cron.d/hello-cron
 RUN touch /var/log/cron.log
-CMD cron && tail -f /var/log/cron.log
-
 ENV FLASK_APP fakie.py
 
+RUN crontab /etc/cron.d/hello-cron
+
 RUN chown -R fakie:fakie ./
-USER fakie
+#USER fakie
 
 EXPOSE 5000
 ENTRYPOINT ["./boot.sh"]
